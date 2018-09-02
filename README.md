@@ -5,7 +5,7 @@ a small devops task which includes developing simple api and deploying the task 
 This is a basic Spring boot project. In order to launch the api, you should take the following steps:
 
 1. perform the gradle command and package java program: <br/>
-      ./gradlew build && java -jar build/libs/gs-spring-boot-docker-0.1.0.jar
+      ./gradlew build 
 
 2. build docker image: <br/>
       docker build -f Dockerfile -t test-docker .
