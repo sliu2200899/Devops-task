@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/complete.iml" filepath="$PROJECT_DIR$/complete.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/complete_main.iml" filepath="$PROJECT_DIR$/.idea/modules/complete_main.iml" group="complete" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/complete_test.iml" filepath="$PROJECT_DIR$/.idea/modules/complete_test.iml" group="complete" />
+      <module fileurl="file://$PROJECT_DIR$/Devops-task.iml" filepath="$PROJECT_DIR$/Devops-task.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Devops-task_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Devops-task_main.iml" group="Devops-task" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Devops-task_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Devops-task_test.iml" group="Devops-task" />
     </modules>
   </component>
 </project>
