@@ -27,27 +27,65 @@ This is a basic Spring boot project. In order to launch the api, you should take
       kubectl apply -f test-service.yaml <br/>
       kubectl apply -f test-ingress.yaml <br/>
       kubectl apply -f test-deployment.yaml <br/>
+      kubectl apply -f test-autoscaler.yaml <br/>
 
 8. after waiting a couple of minutes, we can get the external ip by performing the command: <br/>
-      kubectl get ing
+      kubectl get ing   <br/>
+   so we know the external ip is 35.241.58.191
 
-9. finally, we can query the api like external_ip/nxchallenge/astarisborn/ <br/>
+9. finally, we can query the api:  <br/>
+   
+   9.1 query api:  http://35.241.58.191/ <br/>    
+       I will inform you of querying the api ./nxchallenge/astarisborn <br/>    
+       
+         
+   9.2 query api:  http://35.241.58.191/nxchallenge/astarisborn/ <br/>    
+       I will show the general response of Hello world. <br/>    
+   
+   
+   9.3 query api:  http://35.241.58.191/about <br/>    
+       I will show the signal saying that you are lost, please query ./nxchallenge/astarisborn. <br/>    
+       
+       
+   9.4 regarding identity management, we would assign specific token to user. So next time when uses access the api as well <br/>  
+   as his token, I will show Hello world as well as the map coordinates of where the pod ip is hosted.   <br/>  
+   
+   for example, the secret for the use is "newtonx-challenge", then the processed token would be "bmV3dG9ueC1jaGFsbGVuZ2VuZXd0b254LXBhZGRpbmc=" <br/> 
+       
+   so when user access the api:  http://35.241.58.191/nxchallenge/astarisborn/bmV3dG9ueC1jaGFsbGVuZ2VuZXd0b254LXBhZGRpbmc= <br/>    
+   
+   I will show the information like follows:  <br/>     
+       
+       "response":"Hello World"
+       
+       "myHostIP":"104.199.129.66"
+       "latitude":"39.0438"
+       "longitude":"-77.4874"
 
-# some points that need to explain:
-Deployment:
+
+# Some points that need to explain:
+# Deployment:
 1. scalability <br/>
-use the 
+leverage HorizontalPodAutoscaler in kubernetes to adjust the number of pods dynamically.
+use cpu and memory as metrics to determine whether we need to scale out.
 
 2. health check <br/>
-use the 
+develop the api /healthz to perform the health check <br/>
 
-Development:
-1. Jersey client api <br/>
+3. pod antiaffinity <br/>
+prevent two pods from scattering within the same node, which increase the performance and efficiency.
 
 
-2. podIp and nodeIp <br/>
+# Development:
+1. podIp and nodeIp <br/>
 If you want to get the private address of pod ip or node ip, we can expose pod information to containers via fieldRef through environment variables.
-In this case, because you want the map coordinates of host, so it is easy to get current external ip of node, and call the api to get the coordinates.
+In this case, because we want the map coordinates of host, so it is easy to get current external ip of node, and call the api to get the coordinates.
 
-3. identity management <br/>
-Frankly speaking, I'm not familiar with IDM or related professional IDM framework or service from like okta or mulesoft. The approach that our team use to deal with identity problem is calculating and storing token as well as RSA public/private key. Specifically, when the customer accesses our api at the first time, we will decrypt the message, check the timestamp and secret before creating one token for this user. After that, we would save the token in the database. So the next time, the customer can use this token to identify himself.
+
+2. identity management <br/>
+Frankly speaking, I'm not familiar with IDM or related professional IDM framework or service from like okta or mulesoft.
+Basically, I know it would be straightforward and easy to calculating some token the first time user access the api, and storing the token in the database. 
+But in this case, to make it simple, I just calculate the token and compare the token everytime user access the api. Specifically, I will use our confidential 
+algorithm to calculate the token which would be assigned to users. So the next time, the customer can use this token to identify himself and append to the 
+original api to get some extra information. 
+
