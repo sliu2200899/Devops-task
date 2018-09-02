@@ -11,7 +11,7 @@ This is a basic Spring boot project. In order to launch the api, you should take
       docker build -f Dockerfile -t test-docker .
 
 3. modify docker tag: <br/>
-      docker tag test-docker-5 gcr.io/java-dev-kubernetes/test-docker
+      docker tag test-docker gcr.io/java-dev-kubernetes/test-docker
 
 4. push the image to the gcr. (note that we should login to gcr in advance, gcloud auth configure-docker) <br/>
       docker push gcr.io/java-dev-kubernetes/test-docker

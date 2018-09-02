@@ -2,6 +2,7 @@ package hello.http;
 
 import hello.service.GeoLocation;
 import hello.service.Coordinate;
+import hello.encrypt.Base64Util;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,6 +22,7 @@ public class HelloController {
                     produces = "application/json")
     @ResponseBody
     public String query() {
+        System.out.println("the encode code is " + Base64Util.encode(secret));
 
         return "\"response\"" + ":"+ "\"Hello World\"";
     }
@@ -31,7 +33,7 @@ public class HelloController {
     @ResponseBody
     public String queryWithToken(@PathVariable("token") String token) {
 
-            if (!token.equals(secret)) {
+            if (!Base64Util.decode(token).equals(secret)) {
                 return "the token is incorrect!!";
             }
 

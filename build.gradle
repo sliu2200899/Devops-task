@@ -52,6 +52,7 @@ dependencies {
     compile("org.glassfish.jersey.core:jersey-common:2.26")
     compile("org.glassfish.jersey.media:jersey-media-json-jackson:2.26")
     compile("org.glassfish.jersey.inject:jersey-hk2:2.26")
+    compile("commons-codec:commons-codec:1.10")
     testCompile("org.springframework.boot:spring-boot-starter-test")
     implementation("com.googlecode.json-simple:json-simple:1.1.1")
 }
