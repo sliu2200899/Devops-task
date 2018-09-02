@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: test
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: webapp
@@ -12,9 +12,21 @@ spec:
       labels:
         app: webapp
     spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - webapp
+              topologyKey: kubernetes.io/hostname
       containers:
         - name: test-v1-tomatols
-          image: gcr.io/java-dev-kubernetes/test-docker-5:latest
+          image: gcr.io/java-dev-kubernetes/test-docker:latest
           resources:
             limits:
               cpu: 300m

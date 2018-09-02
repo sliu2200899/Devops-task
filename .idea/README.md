@@ -35,22 +35,19 @@ This is a basic Spring boot project. In order to launch the api, you should take
 
 # some points that need to explain:
 Deployment:
-1. scalability
+1. scalability <br/>
+use the 
 
-
-2. health check
-
-
-3. node affinity
-
+2. health check <br/>
+use the 
 
 Development:
-1. Jersey client api
+1. Jersey client api <br/>
 
 
-2. podIp and nodeIp
+2. podIp and nodeIp <br/>
 If you want to get the private address of pod ip or node ip, we can expose pod information to containers via fieldRef through environment variables.
 In this case, because you want the map coordinates of host, so it is easy to get current external ip of node, and call the api to get the coordinates.
 
-3. identity management
+3. identity management <br/>
 Frankly speaking, I'm not familiar with IDM or related professional IDM framework or service from like okta or mulesoft. The approach that our team use to deal with identity problem is calculating and storing token as well as RSA public/private key. Specifically, when the customer accesses our api at the first time, we will decrypt the message, check the timestamp and secret before creating one token for this user. After that, we would save the token in the database. So the next time, the customer can use this token to identify himself.
