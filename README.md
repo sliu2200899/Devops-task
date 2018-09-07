@@ -47,7 +47,7 @@ This is a basic Spring boot project. In order to launch the api, you should take
        I will show the signal saying that you are lost, please query ./nxchallenge/astarisborn. <br/>    
        
        
-   9.4 regarding identity management, we would assign specific token to user. So next time when uses access the api as well <br/>  
+   9.4 regarding identity management, we would assign specific token to user. So next time when uses access the api as well  
    as his token, I will show Hello world as well as the map coordinates of where the pod ip is hosted.   <br/>  
    
    for example, the secret for the use is "newtonx-challenge", then the processed token would be "bmV3dG9ueC1jaGFsbGVuZ2VuZXd0b254LXBhZGRpbmc=" <br/> 
